@@ -51,7 +51,8 @@ A sliding menu library not just for recyclerview, but all views.
 
       compile 'com.github.anzaizai:EasySwipeMenuLayout:1.1.4'
 
-- last releases version is 1.1.4 can be use
+- last original releases version is 1.1.4 can be use
+- last custom releases version is 1.1.4.1 can be use. This version update callback swipe left and right
 
 ## step 3
 - User EasySwipeMenuLayout as the top-level root layout the needs to be added slide swipe menu the funcation views.
