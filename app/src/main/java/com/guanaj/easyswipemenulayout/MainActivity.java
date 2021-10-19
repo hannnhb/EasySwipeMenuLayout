@@ -1,5 +1,6 @@
 package com.guanaj.easyswipemenulayout;
 
+import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -61,13 +62,30 @@ public class MainActivity extends AppCompatActivity {
 
     public class MyAdapter extends BaseQuickAdapter<String, BaseViewHolder> {
 
-
         public MyAdapter(@LayoutRes int layoutResId, @Nullable List<String> data) {
             super(layoutResId, data);
         }
 
         @Override
         protected void convert(final BaseViewHolder helper, String item) {
+            EasySwipeMenuLayout easySwipeMenuLayout = helper.getView(R.id.es);
+
+            easySwipeMenuLayout.setListener(new EasySwipeMenuLayout.EasySwipeMenuLayoutListener() {
+                @Override
+                public void onRightSwipeListener() {
+                    Toast.makeText(MainActivity.this, "onRightSwipeListener", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onLeftSwipeListener() {
+                    Toast.makeText(MainActivity.this, "onLeftSwipeListener", Toast.LENGTH_SHORT).show();
+                }
+
+                @Override
+                public void onNoWipeListener() {
+                    Toast.makeText(MainActivity.this, "onNoWipeListener", Toast.LENGTH_SHORT).show();
+                }
+            });
 
             helper.getView(R.id.right_menu_2).setOnClickListener(new View.OnClickListener() {
                 @Override

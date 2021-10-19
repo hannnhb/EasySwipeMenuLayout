@@ -43,6 +43,17 @@ public class EasySwipeMenuLayout extends ViewGroup {
     private static State mStateCache;
     private float distanceX;
     private float finalyDistanceX;
+    private EasySwipeMenuLayoutListener mListener;
+
+    public interface EasySwipeMenuLayoutListener {
+        void onRightSwipeListener();
+        void onLeftSwipeListener();
+        void onNoWipeListener();
+    }
+
+    public void setListener(EasySwipeMenuLayoutListener listener) {
+        mListener = listener;
+    }
 
     public EasySwipeMenuLayout(Context context) {
         this(context, null);
@@ -55,7 +66,6 @@ public class EasySwipeMenuLayout extends ViewGroup {
     public EasySwipeMenuLayout(Context context, AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
         init(context, attrs, defStyleAttr);
-
     }
 
     /**
@@ -381,15 +391,23 @@ public class EasySwipeMenuLayout extends ViewGroup {
             mScroller.startScroll(getScrollX(), 0, mLeftView.getLeft() - getScrollX(), 0);
             mViewCache = this;
             mStateCache = result;
+            if (mListener != null) {
+                mListener.onLeftSwipeListener();
+            }
         } else if (result == State.RIGHTOPEN) {
             mViewCache = this;
             mScroller.startScroll(getScrollX(), 0, mRightView.getRight() - mContentView.getRight() - mContentViewLp.rightMargin - getScrollX(), 0);
             mStateCache = result;
+            if (mListener != null) {
+                mListener.onRightSwipeListener();
+            }
         } else {
             mScroller.startScroll(getScrollX(), 0, -getScrollX(), 0);
             mViewCache = null;
             mStateCache = null;
-
+            if (mListener != null) {
+                mListener.onNoWipeListener();
+            }
         }
         invalidate();
     }
