@@ -49,6 +49,8 @@ public class EasySwipeMenuLayout extends ViewGroup {
         void onRightSwipeListener();
         void onLeftSwipeListener();
         void onNoWipeListener();
+        void onActionSwipeStart();
+        void onActionSwipeFinish();
     }
 
     public void setListener(EasySwipeMenuLayoutListener listener) {
@@ -275,6 +277,9 @@ public class EasySwipeMenuLayout extends ViewGroup {
                 break;
             }
             case MotionEvent.ACTION_MOVE: {
+                if (mListener != null) {
+                    mListener.onActionSwipeStart();
+                }
              //   System.out.println(">>>>dispatchTouchEvent() ACTION_MOVE getScrollX:" + getScrollX());
                 float distanceX = mLastP.x - ev.getRawX();
                 float distanceY = mLastP.y - ev.getRawY();
@@ -321,6 +326,9 @@ public class EasySwipeMenuLayout extends ViewGroup {
             }
             case MotionEvent.ACTION_UP:
             case MotionEvent.ACTION_CANCEL: {
+                if (mListener != null) {
+                    mListener.onActionSwipeFinish();
+                }
               //     System.out.println(">>>>dispatchTouchEvent() ACTION_CANCEL OR ACTION_UP");
 
                 finalyDistanceX = mFirstP.x - ev.getRawX();

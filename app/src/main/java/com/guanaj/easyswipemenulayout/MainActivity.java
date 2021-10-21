@@ -1,17 +1,14 @@
 package com.guanaj.easyswipemenulayout;
 
-import android.content.Context;
 import android.support.annotation.LayoutRes;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.SparseArray;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
@@ -74,16 +71,33 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public void onRightSwipeListener() {
                     Toast.makeText(MainActivity.this, "onRightSwipeListener", Toast.LENGTH_SHORT).show();
+                    Log.d("test", "test onRightSwipeListener");
                 }
 
                 @Override
                 public void onLeftSwipeListener() {
                     Toast.makeText(MainActivity.this, "onLeftSwipeListener", Toast.LENGTH_SHORT).show();
+                    Log.d("test", "test onLeftSwipeListener");
                 }
 
                 @Override
                 public void onNoWipeListener() {
                     Toast.makeText(MainActivity.this, "onNoWipeListener", Toast.LENGTH_SHORT).show();
+                    Log.d("test", "test onNoWipeListener");
+
+                }
+
+                @Override
+                public void onActionSwipeStart() {
+                    Toast.makeText(MainActivity.this, "onActionSwipeStart", Toast.LENGTH_SHORT).show();
+                    Log.d("test", "test onActionSwipeStart");
+                }
+
+                @Override
+                public void onActionSwipeFinish() {
+                    Toast.makeText(MainActivity.this, "onActionSwipeFinish", Toast.LENGTH_SHORT).show();
+                    Log.d("test", "test onActionSwipeEnd");
+
                 }
             });
 
