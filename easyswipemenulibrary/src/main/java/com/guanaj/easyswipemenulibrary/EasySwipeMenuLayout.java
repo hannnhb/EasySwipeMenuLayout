@@ -51,6 +51,7 @@ public class EasySwipeMenuLayout extends ViewGroup {
         void onNoWipeListener();
         void onActionSwipeStart();
         void onActionSwipeFinish();
+        void onActionLongClickAndMove();
     }
 
     public void setListener(EasySwipeMenuLayoutListener listener) {
@@ -361,6 +362,9 @@ public class EasySwipeMenuLayout extends ViewGroup {
                 break;
             }
             case MotionEvent.ACTION_MOVE: {
+                if (mListener != null) {
+                    mListener.onActionLongClickAndMove();
+                }
                 //滑动时拦截点击时间
                 if (Math.abs(finalyDistanceX) > mScaledTouchSlop) {
                     // 当手指拖动值大于mScaledTouchSlop值时，认为应该进行滚动，拦截子控件的事件

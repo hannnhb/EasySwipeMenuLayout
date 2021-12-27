@@ -99,6 +99,11 @@ public class MainActivity extends AppCompatActivity {
                     Log.d("test", "test onActionSwipeEnd");
 
                 }
+
+                @Override
+                public void onActionLongClickAndMove() {
+                    Log.d("test", "test onActionLongClickAndMove");
+                }
             });
 
             helper.getView(R.id.right_menu_2).setOnClickListener(new View.OnClickListener() {
