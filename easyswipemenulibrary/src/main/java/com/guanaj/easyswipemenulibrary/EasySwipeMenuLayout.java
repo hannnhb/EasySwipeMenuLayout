@@ -51,7 +51,8 @@ public class EasySwipeMenuLayout extends ViewGroup {
         void onNoWipeListener();
         void onActionSwipeStart();
         void onActionSwipeFinish();
-        void onActionLongClickAndMove();
+        void onActionLongClickAndMoveLeft();
+        void onActionLongClickAndMoveRight();
     }
 
     public void setListener(EasySwipeMenuLayoutListener listener) {
@@ -363,7 +364,15 @@ public class EasySwipeMenuLayout extends ViewGroup {
             }
             case MotionEvent.ACTION_MOVE: {
                 if (mListener != null) {
-                    mListener.onActionLongClickAndMove();
+                    if (getScrollX() > 0) {
+                        if (mCanLeftSwipe && mRightView != null) {
+                            mListener.onActionLongClickAndMoveRight();
+                        }
+                    } else {
+                        if (mCanRightSwipe && mLeftView != null) {
+                            mListener.onActionLongClickAndMoveLeft();
+                        }
+                    }
                 }
                 //滑动时拦截点击时间
                 if (Math.abs(finalyDistanceX) > mScaledTouchSlop) {

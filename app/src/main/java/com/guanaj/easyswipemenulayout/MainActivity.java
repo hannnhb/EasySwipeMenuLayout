@@ -101,8 +101,13 @@ public class MainActivity extends AppCompatActivity {
                 }
 
                 @Override
-                public void onActionLongClickAndMove() {
-                    Log.d("test", "test onActionLongClickAndMove");
+                public void onActionLongClickAndMoveLeft() {
+
+                }
+
+                @Override
+                public void onActionLongClickAndMoveRight() {
+
                 }
             });
 
